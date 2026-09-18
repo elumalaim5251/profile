@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Elumalai - B.Tech Computer Science and Engineering student portfolio">
+  <title>Elumalai | Full-Stack Developer Portfolio</title>
+  <style>
+    :root {
+      --navy: #0b2f66;
+      --blue: #1769aa;
+      --light-blue: #eaf4ff;
+      --text: #183153;
+      --muted: #60758f;
+      --white: #ffffff;
+      --line: #d9e7f5;
+      --shadow: 0 18px 45px rgba(15, 54, 95, .12);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: #f5f9fd;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: .5px;
+    }
+
+    .logo span { color: var(--blue); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      font-size: .95rem;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+
+    /* Hero */
+    .hero {
+      background:
+        radial-gradient(circle at 85% 20%, rgba(66, 147, 230, .35), transparent 30%),
+        linear-gradient(135deg, #092b5d, #1769aa);
+      color: white;
+      padding: 92px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border: 1px solid rgba(255,255,255,.13);
+      transform: rotate(45deg);
+      right: -120px;
+    }
+
+    .hero::before { top: -120px; }
+    .hero::after { bottom: -180px; right: 120px; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.5fr .9fr;
+      gap: 55px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: .82rem;
+      font-weight: 700;
+      opacity: .85;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 7vw, 5rem);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+    }
+
+    .hero h2 {
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #eaf5ff;
+      font-size: 1.05rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 19px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,.4);
+      transition: .2s ease;
+    }
+
+    .btn.primary {
+      background: white;
+      color: var(--navy);
+      border-color: white;
+    }
+
+    .btn.secondary:hover,
+    .btn.primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn.secondary { color: white; }
+
+    .hero-card {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 24px;
+      padding: 28px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 25px 60px rgba(0,0,0,.16);
+    }
+
+    .hero-card h3 { margin-bottom: 18px; }
+
+    .contact-item {
+      display: flex;
+      gap: 12px;
+      margin: 13px 0;
+      color: #eef7ff;
+      word-break: break-word;
+    }
+
+    /* General sections */
+    section { padding: 80px 0; }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title span {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .section-title h2 {
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      margin-top: 5px;
+      color: var(--navy);
+    }
+
+    .section-title p {
+      max-width: 700px;
+      margin: 10px auto 0;
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .muted { color: var(--muted); }
+
+    /* About */
+    .about-text {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+      font-size: 1.05rem;
+    }
+
+    /* Skills */
+    .skills {
+      background: var(--light-blue);
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .skill {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      text-align: center;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(15,54,95,.06);
+    }
+
+    .skill .icon {
+      font-size: 1.8rem;
+      margin-bottom: 7px;
+    }
+
+    /* Education */
+    .timeline {
+      max-width: 850px;
+      margin: auto;
+      display: grid;
+      gap: 20px;
+    }
+
+    .education-card {
+      border-left: 5px solid var(--blue);
+    }
+
+    .education-card .year {
+      display: inline-block;
+      background: var(--light-blue);
+      color: var(--blue);
+      font-size: .8rem;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 3px 10px;
+      margin-bottom: 8px;
+    }
+
+    /* Project */
+    .project {
+      background: linear-gradient(145deg, #ffffff, #f0f7ff);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 38px;
+      box-shadow: var(--shadow);
+    }
+
+    .project h3 {
+      font-size: 1.65rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .feature-list {
+      margin: 18px 0 22px 20px;
+    }
+
+    .feature-list li { margin: 7px 0; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--light-blue);
+      color: var(--navy);
+      font-size: .85rem;
+      font-weight: 700;
+    }
+
+    /* Two cards */
+    .list {
+      padding-left: 20px;
+    }
+
+    .list li { margin: 8px 0; }
+
+    /* Contact */
+    .contact {
+      background: var(--navy);
+      color: white;
+    }
+
+    .contact .section-title h2,
+    .contact .section-title p { color: white; }
+
+    .contact-box {
+      max-width: 780px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .contact-link {
+      padding: 10px 16px;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 999px;
+    }
+
+    footer {
+      background: #061f43;
+      color: #bcd0e8;
+      text-align: center;
+      padding: 22px;
+      font-size: .9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+      .hero-grid, .grid-2 { grid-template-columns: 1fr; }
+      .skill-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+      .hero { padding: 70px 0; }
+    }
+
+    @media (max-width: 520px) {
+      section { padding: 60px 0; }
+      .skill-grid { grid-template-columns: 1fr; }
+      .card, .project, .hero-card { padding: 23px; }
+      h1 { font-size: 3rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="logo" href="#home">ELU<span>MALAI</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#project">Project</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">B.Tech Computer Science & Engineering</div>
+        <h1>Elumalai</h1>
+        <h2>Future Full-Stack Developer</h2>
+        <p>
+          Motivated Computer Science student interested in building web applications,
+          learning modern technologies, and contributing to real-world software projects.
+        </p>
+        <div class="buttons">
+          <a class="btn primary" href="#project">View My Project</a>
+          <a class="btn secondary" href="#contact">Contact Me</a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <h3>Contact</h3>
+        <div class="contact-item">📍 <span>Trichy, Tamil Nadu</span></div>
+        <div class="contact-item">📞 <span>9677805251</span></div>
+        <div class="contact-item">✉️ <span>elumalai.m5251@gmail.com</span></div>
+        <div class="contact-item">💼 <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener">LinkedIn</a></div>
+        <div class="contact-item">💻 <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="container">
+        <div class="section-title">
+          <span>Profile</span>
+          <h2>Career Objective</h2>
+        </div>
+        <p class="about-text">
+          Motivated B.Tech Computer Science and Engineering student seeking a Full-Stack
+          Developer internship or entry-level opportunity. Interested in building web
+          applications and improving practical software development skills. Eager to
+          learn new technologies and contribute to real-world projects.
+        </p>
+      </div>
+    </section>
+
+    <section class="skills" id="skills">
+      <div class="container">
+        <div class="section-title">
+          <span>What I Know</span>
+          <h2>Technical Skills</h2>
+          <p>My current foundation for web and software development.</p>
+        </div>
+
+        <div class="skill-grid">
+          <div class="skill"><div class="icon">☕</div>Java</div>
+          <div class="skill"><div class="icon">🌐</div>HTML</div>
+          <div class="skill"><div class="icon">🎨</div>CSS</div>
+          <div class="skill"><div class="icon">💻</div>Full-Stack Web Development</div>
+          <div class="skill"><div class="icon">🧩</div>Problem Solving</div>
+          <div class="skill"><div class="icon">🤝</div>Team Collaboration</div>
+          <div class="skill"><div class="icon">📚</div>Quick Learning</div>
+          <div class="skill"><div class="icon">⏱️</div>Time Management</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-title">
+          <span>Academic Journey</span>
+          <h2>Education</h2>
+        </div>
+
+        <div class="timeline">
+          <article class="card education-card">
+            <span class="year">Current</span>
+            <h3>B.Tech – Computer Science and Engineering</h3>
+            <p>Dhanalakshmi Srinivasan University, Trichy</p>
+            <p class="muted">Expected Graduation: 4th year &nbsp; | &nbsp; CGPA: 7.80</p>
+          </article>
+
+          <article class="card education-card">
+            <span class="year">2024</span>
+            <h3>Higher Secondary (12th)</h3>
+            <p>ACS Matric Higher Secondary School</p>
+            <p class="muted">Percentage: 70%</p>
+          </article>
+
+          <article class="card education-card">
+            <span class="year">2022</span>
+            <h3>SSLC (10th)</h3>
+            <p>ACS Matric Higher Secondary School</p>
+            <p class="muted">Percentage: 50%</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="project">
+      <div class="container">
+        <div class="section-title">
+          <span>Featured Work</span>
+          <h2>Project</h2>
+        </div>
+
+        <article class="project">
+          <h3>Digital Platform for Societal Problem Solving</h3>
+          <p>
+            A digital platform designed to crowdsource societal challenges and connect
+            universities, students, experts, and industry partners to collaboratively
+            develop practical solutions.
+          </p>
+
+          <h4 style="margin-top:20px;">Key Features</h4>
+          <ul class="feature-list">
+            <li>Allows users to submit and describe societal problems.</li>
+            <li>Helps categorize and organize submitted challenges.</li>
+            <li>Enables students and universities to collaborate on solutions.</li>
+            <li>Supports industry participation and knowledge sharing.</li>
+            <li>Provides a structured platform for tracking proposed solutions and their progress.</li>
+          </ul>
+
+          <p><strong>Role:</strong> Team Member</p>
+          <div class="tags">
+            <span class="tag">Java</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">Problem Solving</span>
+            <span class="tag">Collaboration</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-title">
+          <span>Experience</span>
+          <h2>Hackathon Experience</h2>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>Hackathon Project</h3>
+            <p class="muted">Societal Problem-Solving Platform</p>
+            <ul class="list">
+              <li>Worked as part of a team to develop a solution for a real-world societal challenge.</li>
+              <li>Contributed to project planning, idea development, and presentation.</li>
+              <li>Focused on creating a practical digital platform connecting problem providers with solution developers.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Languages</h3>
+            <ul class="list">
+              <li>Tamil</li>
+              <li>English</li>
+            </ul>
+            <h3 style="margin-top:22px;">Interests</h3>
+            <p class="muted">Full-Stack Web Development · Programming · Problem Solving</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="grid-2">
+          <article class="card">
+            <h3>Certifications</h3>
+            <ul class="list">
+              <li>Add certification name – platform/organization</li>
+              <li>Add certification name – platform/organization</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Achievements</h3>
+            <ul class="list">
+              <li>Participated in a hackathon</li>
+              <li>Add other achievement</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-box">
+        <div class="section-title">
+          <span>Let's Connect</span>
+          <h2>Contact Me</h2>
+          <p>Interested in internship and entry-level Full-Stack Developer opportunities.</p>
+        </div>
+
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:elumalai.m5251@gmail.com">Email</a>
+          <a class="contact-link" href="https://www.linkedin.com/feed/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="contact-link" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+          <a class="contact-link" href="tel:+919677805251">Call</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Elumalai · B.Tech CSE · Full-Stack Developer Portfolio
+  </footer>
+</body>
+</html>
